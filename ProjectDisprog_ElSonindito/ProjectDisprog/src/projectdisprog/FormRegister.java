@@ -47,6 +47,11 @@ public class FormRegister extends javax.swing.JFrame {
         jLabel1.setText("Name:");
 
         regisBtn.setText("REGISTER");
+        regisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regisBtnActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Lucida Handwriting", 0, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,6 +139,15 @@ public class FormRegister extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void regisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regisBtnActionPerformed
+        // TODO add your handling code here:
+        FormLogin log = new FormLogin();
+        log.setVisible(true);
+        log.pack();
+        log.setLocationRelativeTo(null);
+        log.setDefaultCloseOperation(FormRegister.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_regisBtnActionPerformed
 
     /**
      * @param args the command line arguments

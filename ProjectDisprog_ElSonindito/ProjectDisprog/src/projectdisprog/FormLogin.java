@@ -103,6 +103,12 @@ public class FormLogin extends javax.swing.JFrame {
         char[]passwordChars = passwordTxt.getPassword();
         String password = new String(passwordChars); 
         
+        FormMain main = new FormMain();
+        main.setVisible(true);
+        main.pack();
+        main.setLocationRelativeTo(null);
+        main.setDefaultCloseOperation(FormRegister.EXIT_ON_CLOSE);
+        
         try {
             // Koneksi ke server di port 6000
             s = new Socket("localhost", 6000);
