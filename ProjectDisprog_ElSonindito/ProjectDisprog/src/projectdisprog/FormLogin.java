@@ -3,13 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package projectdisprog;
-
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Owner
  */
 public class FormLogin extends javax.swing.JFrame {
-
+    
+    Socket s;
+    BufferedReader msgFromServer;
+    DataOutputStream msgToServer;
     /**
      * Creates new form FormLogin
      */
@@ -43,6 +50,11 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         loginBtn.setText("LOG IN");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +97,38 @@ public class FormLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        // TODO add your handling code here:
+        char[]passwordChars = passwordTxt.getPassword();
+        String password = new String(passwordChars); 
+        
+        try {
+            // Koneksi ke server di port 6000
+            s = new Socket("localhost", 6000);
+            msgFromServer = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            msgToServer = new DataOutputStream(s.getOutputStream());
+
+            // Kirim data login ke server
+            msgToServer.writeBytes("LOGIN " + userTxt.getText() + " " + password + "\n");
+
+            // Terima respon dari server
+            String hasil = msgFromServer.readLine();
+            if (hasil.equals("TRUE")) {
+                JOptionPane.showMessageDialog(this, "Login Berhasil!");
+            } else if (hasil.equals("FALSE")) {
+                JOptionPane.showConfirmDialog(this, "Akses ditolak! Username atau password salah.");
+            }
+
+            // Tutup koneksi setelah selesai
+            msgFromServer.close();
+            msgToServer.close();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
      * @param args the command line arguments
