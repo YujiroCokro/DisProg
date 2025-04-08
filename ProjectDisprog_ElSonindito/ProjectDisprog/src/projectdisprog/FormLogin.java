@@ -114,7 +114,6 @@ public class FormLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        System.out.println("hi");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormLogin().setVisible(true);
