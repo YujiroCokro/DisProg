@@ -4,6 +4,12 @@
  */
 package projectdisprog;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+import projectdisprog.FormLogin;
 /**
  *
  * @author Owner
@@ -30,16 +36,10 @@ public class FormRegister extends javax.swing.JFrame {
         nameTxt = new javax.swing.JTextField();
         regisBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        dobTxt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        emailTxt = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        phoneTxt = new javax.swing.JTextField();
         userTxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        pwdTxt = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(377, 400));
@@ -57,12 +57,6 @@ public class FormRegister extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("REGISTER");
 
-        jLabel5.setText("Date of Birth:");
-
-        jLabel2.setText("Email:");
-
-        jLabel7.setText("Phone Number:");
-
         jLabel8.setText("Password:");
 
         jLabel3.setText("Username:");
@@ -77,30 +71,19 @@ public class FormRegister extends javax.swing.JFrame {
                         .addGap(134, 134, 134)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(24, 24, 24))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(emailTxt)
-                            .addComponent(phoneTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                            .addComponent(pwdTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                            .addComponent(userTxt)
+                            .addComponent(passwordTxt)
+                            .addComponent(userTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                             .addComponent(nameTxt)
-                            .addComponent(dobTxt)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(regisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(regisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,24 +97,12 @@ public class FormRegister extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dobTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(12, 12, 12)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pwdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(regisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -142,11 +113,44 @@ public class FormRegister extends javax.swing.JFrame {
 
     private void regisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regisBtnActionPerformed
         // TODO add your handling code here:
+        char[]passwordChars = passwordTxt.getPassword();
+        String passwords = new String(passwordChars); 
+        
         FormLogin log = new FormLogin();
         log.setVisible(true);
         log.pack();
         log.setLocationRelativeTo(null);
         log.setDefaultCloseOperation(FormRegister.EXIT_ON_CLOSE);
+        
+        try {
+        Socket s = new Socket("localhost", 6000);
+        PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String fullname = nameTxt.getText();
+        String username = userTxt.getText();
+        String password = passwords;
+
+        String registerData = "REGISTER," + fullname + "," + username + "," + password;
+        out.println(registerData);
+
+        String response = in.readLine();
+        if (response.equals("EXISTS")) {
+            JOptionPane.showMessageDialog(this, "The user is already registered in the system.");
+        } else if (response.equals("SUCCESS")) {
+            JOptionPane.showMessageDialog(this, "Registration successful! Returning to login form.");
+            this.dispose(); 
+            new FormLogin().setVisible(true); 
+        }
+
+        in.close();
+        out.close();
+        s.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+                                              
     }//GEN-LAST:event_regisBtnActionPerformed
 
     /**
@@ -185,18 +189,12 @@ public class FormRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField dobTxt;
-    private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField phoneTxt;
-    private javax.swing.JTextField pwdTxt;
+    private javax.swing.JPasswordField passwordTxt;
     private javax.swing.JButton regisBtn;
     private javax.swing.JTextField userTxt;
     // End of variables declaration//GEN-END:variables
