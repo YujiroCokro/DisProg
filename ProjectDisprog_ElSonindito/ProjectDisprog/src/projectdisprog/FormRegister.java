@@ -21,6 +21,7 @@ public class FormRegister extends javax.swing.JFrame {
      */
     public FormRegister() {
         initComponents();
+        
     }
 
     /**
@@ -32,6 +33,7 @@ public class FormRegister extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         regisBtn = new javax.swing.JButton();
@@ -43,6 +45,8 @@ public class FormRegister extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(377, 400));
+
+        jPanel1.setBackground(new java.awt.Color(176, 231, 253));
 
         jLabel1.setText("Name:");
 
