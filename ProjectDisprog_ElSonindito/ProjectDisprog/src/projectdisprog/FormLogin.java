@@ -145,7 +145,7 @@ public class FormLogin extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+        } 
     }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
