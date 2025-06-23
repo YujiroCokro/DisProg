@@ -8,6 +8,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import javax.swing.JOptionPane;
+import projectdisprog.FormRegister;
 /**
  *
  * @author Owner
@@ -179,6 +180,7 @@ public class FormLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormLogin().setVisible(true);
+                
             }
         });
     }
